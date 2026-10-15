@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的部落格</title>
+</head>
+<body>
+    <h1>我的部落格</h1>
+
+    <p>
+        <a href="{{ url_for('new_post') }}">新增文章</a>
+    </p>
+
+    <hr>
+
+    {% for post in posts %}
+        <article>
+            <h2>
+                <a href="{{ url_for(
+                    'show_post',
+                    post_id=post.id
+                ) }}">
+                    {{ post.title }}
+                </a>
+            </h2>
+
+            <p>作者：{{ post.author }}</p>
+            <p>{{ post.content }}</p>
+        </article>
+
+        <hr>
+    {% else %}
+        <p>目前還沒有文章。</p>
+    {% endfor %}
+</body>
+</html>
